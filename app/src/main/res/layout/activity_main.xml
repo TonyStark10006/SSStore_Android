@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="30dp"
+    tools:context="com.tonystark10006.ssstore.MainActivity">
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="302dp"
+        android:layout_height="57dp"
+        android:ems="10"
+        android:hint="用户名"
+        android:layout_marginTop="10dp"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="302dp"
+        android:layout_height="57dp"
+        android:ems="10"
+        android:hint="密码"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="296dp"
+        android:layout_height="40dp"
+        android:text="登录"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/password" />
+
+    <Button
+        android:id="@+id/about"
+        android:layout_width="296dp"
+        android:layout_height="40dp"
+        android:text="关于我们"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/login" />
+
+</RelativeLayout>
