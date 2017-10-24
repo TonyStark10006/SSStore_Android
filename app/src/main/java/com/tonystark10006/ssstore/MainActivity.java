@@ -1,6 +1,5 @@
 package com.tonystark10006.ssstore;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     EditText inputUsername;
@@ -61,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onClick()
+    public void getMsg() throws Exception
     {
-
+        URL url = new URL("www.baidu.com");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
     }
 }

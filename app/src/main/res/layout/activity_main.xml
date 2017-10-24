@@ -14,7 +14,9 @@
         android:ems="10"
         android:hint="用户名"
         android:layout_marginTop="10dp"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        />
 
     <EditText
         android:id="@+id/password"
@@ -24,7 +26,8 @@
         android:hint="密码"
         android:layout_below="@+id/username"
         android:layout_marginTop="10dp"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:maxLines="1" />
 
     <Button
         android:id="@+id/login"

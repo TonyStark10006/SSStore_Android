@@ -4,36 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="30dp"
+    android:gravity="center"
     tools:context="com.tonystark10006.ssstore.MainActivity">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/aboutUs"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:gravity="center"
         android:text="威水啦"
-        android:textSize="18sp" />
+        android:textSize="18sp" />-->
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="right"
-        android:layout_below="@+id/aboutUs">
-        <Button
+        android:gravity="right">-->
+        <!--<Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="保存"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="清空"/>
+            android:text="清空"/>-->
         <ImageView
-            android:id="@+id/img1"
+            android:id="@+id/logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:src="@drawable/ic_launcher"/>
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo"
+            android:text="Copyright © 2017 SSStore@Vofy"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"/>
+    <!--</LinearLayout>-->
 
 </RelativeLayout>
