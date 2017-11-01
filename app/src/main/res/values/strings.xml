@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SSStore</string>
+    <string name="version">version: alpha-test</string>
+    <string name="menu_aboutus">关于我们</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_exit">退出</string>
 </resources>

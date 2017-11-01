@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     tools:context="com.tonystark10006.ssstore.MainActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:title="关于我们"
+        app:titleTextColor="#FFFfff"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/OverFlowMenuTheme"
+        />
 
     <!--<TextView
         android:id="@+id/aboutUs"
@@ -33,13 +43,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="100dp"
             android:src="@drawable/ic_launcher"/>
+
+        <TextView android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/version"
+            android:layout_below="@+id/logo"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            />
 
         <TextView
             android:id="@+id/intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/logo"
+            android:layout_below="@id/version"
             android:text="Copyright © 2017 SSStore@Vofy"
             android:textStyle="bold"
             android:textSize="15dp"

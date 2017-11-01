@@ -4,9 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="30dp"
     tools:context="com.tonystark10006.ssstore.MainActivity">
+    <!--
+        app:title="登录"-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="#FFFfff"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/OverFlowMenuTheme"
+        />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:paddingLeft="50dp">
     <EditText
         android:id="@+id/username"
         android:layout_width="302dp"
@@ -14,6 +30,7 @@
         android:ems="10"
         android:hint="用户名"
         android:layout_marginTop="10dp"
+        android:layout_below="@+id/toolbar"
         android:inputType="textPersonName"
         android:maxLines="1"
         />
@@ -35,7 +52,8 @@
         android:layout_height="40dp"
         android:text="登录"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/password" />
+        android:layout_below="@+id/password"
+        android:onClick="getMsg"/>
 
     <Button
         android:id="@+id/about"
@@ -44,5 +62,5 @@
         android:text="关于我们"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/login" />
-
+    </RelativeLayout>
 </RelativeLayout>
