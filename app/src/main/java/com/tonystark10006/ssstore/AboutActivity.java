@@ -3,6 +3,7 @@ package com.tonystark10006.ssstore;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -14,9 +15,10 @@ public  class AboutActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        this.toolbar = (Toolbar)findViewById(R.id.toolbar);
+        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(this.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //this.toolbar.setNavigationIcon(R.drawable.ic_action_arrow_back);
         /*WebView webView = new WebView(this);
@@ -32,4 +34,14 @@ public  class AboutActivity extends AppCompatActivity
         webView.loadUrl("http://www.baidu.com");          //调用loadUrl方法为WebView加入链接
         setContentView(webView);                           //调用Activity提供的setContentView将webView显示出来*/
     }
+
+    /*@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }*/
 }

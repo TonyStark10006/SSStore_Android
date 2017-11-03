@@ -6,23 +6,18 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
-import com.tonystark10006.ssstore.models.GetData;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -45,16 +40,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //绑定标签元素
-        this.inputUsername = (EditText)findViewById(R.id.username);
-        this.inputPassword = (EditText)findViewById(R.id.password);
-        this.login = (Button)findViewById(R.id.login);
-        this.about = (Button)findViewById(R.id.about);
-        this.toolbar = (Toolbar)findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        this.toolbar.setTitle("欢迎来到SS小商店");
-        this.toolbar.inflateMenu(R.menu.base_toolbar_menu);
-
-                //绑定点击按钮动作
+        this.inputUsername = (EditText) findViewById(R.id.username);
+        this.inputPassword = (EditText) findViewById(R.id.password);
+        this.login = (Button) findViewById(R.id.login);
+        //this.about = (Button) findViewById(R.id.about);
+        this.toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(this.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //this.toolbar.setTitle("欢迎来到SS小商店");
+        //this.toolbar.inflateMenu(R.menu.base_toolbar_menu);
+        //this.toolbar.setOnMenuItemClickListener();
+        //绑定点击按钮动作
         /*login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,13 +60,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        about.setOnClickListener(new View.OnClickListener() {
+        /*about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, AboutActivity.class));
             }
-        });
+        });*/
         //login.setOnClickListener(new BtnClickListener());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.base_toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_setting:
+                Toast.makeText(this.getApplication(), "哈哈", Toast.LENGTH_LONG).show();
+                break;
+        }
+        switch (item.getItemId()) {
+            case R.id.menu_aboutus:
+                /*item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {*/
+                        startActivity(new Intent(MainActivity.this, AboutActivity.class));
+                        /*return false;
+                    }
+                });*/
+                //Toast.makeText(this.getApplication(), "嘻嘻", Toast.LENGTH_LONG).show();
+                break;
+        }
+        switch (item.getItemId()) {
+            case R.id.menu_exit:
+                //Toast.makeText(this.getApplication(), "嘎嘎", Toast.LENGTH_LONG).show();
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -82,11 +112,6 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Toast.makeText(getApplicationContext(), "按钮被点击了", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void updateView(String good)
-    {
-        this.inputUsername.setText(good);
     }
 
     public void getMsg(View view) throws Exception
@@ -116,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("哈哈", Thread.currentThread().getName() + "   " + good);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                        //取出name
                         final String phoneno = jsonObject.getString("phoneno");
                         final String carrier = jsonObject.getString("type");
                         myHandler.post(new Runnable() {

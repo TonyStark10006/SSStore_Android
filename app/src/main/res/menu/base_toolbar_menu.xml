@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/menu_setting"
         android:title="@string/menu_settings"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_notification"
+        android:id="@+id/menu_aboutus"
         android:title="@string/menu_aboutus"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_notification"
+        android:id="@+id/menu_exit"
         android:title="@string/menu_exit"
         app:showAsAction="never" />
 
