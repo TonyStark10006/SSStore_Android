@@ -1,6 +1,8 @@
 package com.tonystark10006.ssstore;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -37,16 +39,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        SharedPreferences preferences = getSharedPreferences("token", Context.MODE_PRIVATE);
+        String token = preferences.getString("tokenValue", "");
+        if (token == "") {
+            //setContentView(R.layout.activity_login);
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        } else {
+            setContentView(R.layout.activity_main);
+            //绑定标签元素
+            //this.inputUsername = (EditText) findViewById(R.id.username);
+            //this.inputPassword = (EditText) findViewById(R.id.password);
+            //this.login = (Button) findViewById(R.id.login);
+            //this.about = (Button) findViewById(R.id.about);
+            this.toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+            setSupportActionBar(this.toolbar);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
 
-        //绑定标签元素
-        this.inputUsername = (EditText) findViewById(R.id.username);
-        this.inputPassword = (EditText) findViewById(R.id.password);
-        this.login = (Button) findViewById(R.id.login);
-        //this.about = (Button) findViewById(R.id.about);
-        this.toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(this.toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         //this.toolbar.setTitle("欢迎来到SS小商店");
         //this.toolbar.inflateMenu(R.menu.base_toolbar_menu);
         //this.toolbar.setOnMenuItemClickListener();
@@ -72,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.base_toolbar_menu, menu);
+        //menu.add(Menu.NONE, Menu.FIRST + 3, 4, "嘻嘻哈哈");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -79,10 +90,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_setting:
-                Toast.makeText(this.getApplication(), "哈哈", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                //Toast.makeText(this.getApplication(), "哈哈", Toast.LENGTH_LONG).show();
                 break;
-        }
-        switch (item.getItemId()) {
             case R.id.menu_aboutus:
                 /*item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
@@ -93,11 +103,12 @@ public class MainActivity extends AppCompatActivity {
                 });*/
                 //Toast.makeText(this.getApplication(), "嘻嘻", Toast.LENGTH_LONG).show();
                 break;
-        }
-        switch (item.getItemId()) {
             case R.id.menu_exit:
                 //Toast.makeText(this.getApplication(), "嘎嘎", Toast.LENGTH_LONG).show();
                 finish();
+                break;
+            case Menu.FIRST + 3:
+                Toast.makeText(this.getApplication(), "嘎嘎", Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -112,50 +123,5 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Toast.makeText(getApplicationContext(), "按钮被点击了", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public void getMsg(View view) throws Exception
-    {
-        OkHttpClient client = new OkHttpClient.Builder().readTimeout(5, TimeUnit.SECONDS).build();
-        //www.mofada.cn/Utils/guishudi.php?query=13560342474
-        Request request = new Request.Builder().url("http://192.168.31.223/laravel/public/test6").build();
-        Call call = client.newCall(request);
-
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                //失败
-                Log.e("TAG",Thread.currentThread().getName() + "结果  " + e.toString());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                //成功  子线程
-                //main thread1
-                //Log.e("TAG","结果  " + response.body().string().getClass().toString());
-                try {
-                    final String good = response.body().string();
-                    JSONObject good1 = new JSONObject(good);
-                    final String good2 = good1.getString("status");
-                    JSONArray jsonArray = good1.getJSONArray("data");
-                    Log.e("哈哈", Thread.currentThread().getName() + "   " + good);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                        final String phoneno = jsonObject.getString("phoneno");
-                        final String carrier = jsonObject.getString("type");
-                        myHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                inputUsername.setText(phoneno);
-                                inputPassword.setText(carrier);
-                            }
-                        });
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-        });
     }
 }

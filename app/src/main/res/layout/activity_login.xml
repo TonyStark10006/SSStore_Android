@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tonystark10006.ssstore.MainActivity">
+    <!--
+        app:title="登录"-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:titleTextColor="#FFFfff"
+        app:title="欢迎来到SS小商店111"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/OverFlowMenuTheme"
+        >
+        <TextView
+            android:id="@+id/toobarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="欢迎来到SS小商店"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/my_toolbar"
+        android:paddingLeft="30dp">
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="302dp"
+            android:layout_height="57dp"
+            android:ems="10"
+            android:hint="用户名"
+            android:layout_marginTop="10dp"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="302dp"
+            android:layout_height="57dp"
+            android:ems="10"
+            android:hint="密码"
+            android:layout_below="@id/username"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:maxLines="1" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="296dp"
+            android:layout_height="40dp"
+            android:text="登录"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/password"
+            android:onClick="getMsg"
+            />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="296dp"
+            android:layout_height="40dp"
+            android:text="退出当前账户"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/login"
+            />
+
+        <!--<Button
+            android:id="@+id/about"
+            android:layout_width="296dp"
+            android:layout_height="40dp"
+            android:text="关于我们"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/login" />-->
+    </RelativeLayout>
+</RelativeLayout>

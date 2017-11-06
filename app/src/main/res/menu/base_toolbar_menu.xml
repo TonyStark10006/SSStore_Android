@@ -3,8 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_index"
+        android:title="@string/index"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_setting"
         android:title="@string/menu_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_account"
+        android:title="@string/menu_account"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_connect"
+        android:title="@string/menu_connect"
         app:showAsAction="never" />
 
     <item

@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/version"
-            android:text="Copyright © 2017 SSStore@Vofy"
+            android:text="Copyright © 2017 Vofy@SSStore"
             android:textStyle="bold"
             android:textSize="15dp"
             android:layout_marginTop="10dp"

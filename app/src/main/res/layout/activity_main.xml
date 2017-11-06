@@ -31,8 +31,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/my_toolbar"
-        android:paddingLeft="30dp">
-    <EditText
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="这是主介绍界面"
+            android:textSize="40dp"/>
+
+    <!--<EditText
         android:id="@+id/username"
         android:layout_width="302dp"
         android:layout_height="57dp"
@@ -41,6 +49,7 @@
         android:layout_marginTop="10dp"
         android:inputType="textPersonName"
         android:maxLines="1"
+        android:layout_below="@id/intro"
         />
 
     <EditText
@@ -61,7 +70,7 @@
         android:text="登录"
         android:layout_marginTop="10dp"
         android:layout_below="@id/password"
-        android:onClick="getMsg"/>
+        android:onClick="getMsg"/>-->
 
     <!--<Button
         android:id="@+id/about"

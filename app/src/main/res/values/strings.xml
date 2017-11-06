@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">SSStore</string>
     <string name="version">version: alpha-test</string>
+    <string name="index">主页</string>
+    <string name="menu_account">我的账户</string>
+    <string name="menu_connect">连接VPN</string>
     <string name="menu_aboutus">关于我们</string>
     <string name="menu_settings">设置</string>
     <string name="menu_exit">退出</string>
