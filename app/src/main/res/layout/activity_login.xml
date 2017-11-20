@@ -65,14 +65,14 @@
             android:onClick="getMsg"
             />
 
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="296dp"
-            android:layout_height="40dp"
-            android:text="退出当前账户"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/login"
-            />
+        <!--<Button-->
+            <!--android:id="@+id/logout"-->
+            <!--android:layout_width="296dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:text="退出当前账户"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_below="@id/login"-->
+            <!--/>-->
 
         <!--<Button
             android:id="@+id/about"

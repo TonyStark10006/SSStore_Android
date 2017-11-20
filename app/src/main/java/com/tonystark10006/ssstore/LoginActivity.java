@@ -20,8 +20,10 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity
@@ -39,34 +41,53 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         this.preferences = getSharedPreferences("token", Context.MODE_PRIVATE);
         //String token = preferences.getString("tokenValue", "");
-
-        setContentView(R.layout.activity_login);
-        //startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        this.inputUsername = (EditText) findViewById(R.id.username);
-        this.inputPassword = (EditText) findViewById(R.id.password);
-        this.login = (Button) findViewById(R.id.login);
-        this.logout = (Button) findViewById(R.id.logout);
-        this.logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearToken();
-            }
-        });
+        //if (this.preferences.getString("tokenValue", "").equals("")) {
+            setContentView(R.layout.activity_login);
+            //startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            this.inputUsername = (EditText) findViewById(R.id.username);
+            this.inputPassword = (EditText) findViewById(R.id.password);
+            this.login = (Button) findViewById(R.id.login);
+        /*} else {
+            setContentView(R.layout.activity_myaccount);
+            TextView username = (TextView)findViewById(R.id.myusername);
+            username.setText(preferences.getString("username", ""));
+            this.logout = (Button) findViewById(R.id.logout);
+            this.logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clearToken();
+                }
+            });
+        }*/
         this.toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         this.toobarTitle = (TextView) findViewById(R.id.toobarTitle);
         setSupportActionBar(this.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        this.toobarTitle.setText("登录");
+        //if (this.preferences.getString("tokenValue", "").equals("")) {
+            this.toobarTitle.setText("登录");
+        //} else {
+        //    this.toobarTitle.setText("我的账户");
+        //}
     }
 
     public void getMsg(View view) throws Exception
     {
         OkHttpClient client = new OkHttpClient.Builder().readTimeout(5, TimeUnit.SECONDS).build();
         //www.mofada.cn/Utils/guishudi.php?query=13560342474
-        Request request = new Request.Builder().url("http://192.168.31.223/laravel/public/api/test6?token=nima").build();
+        //post请求来获得数据
+        //创建一个RequestBody，存放重要数据的键值对
+        RequestBody body = new FormBody.Builder()
+                .add("username", this.inputUsername.getText().toString())
+                .add("password", this.inputPassword.getText().toString())
+                .build();
+        //创建一个请求对象，传入URL地址和相关数据的键值对的对象
+        Request request = new Request.Builder().url(url).post(body).build();
+
+        //创建一个能处理请求数据的操作类
         Call call = client.newCall(request);
 
+        //使用异步任务的模式请求数据
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -95,9 +116,19 @@ public class LoginActivity extends AppCompatActivity
                             //inputUsername.setText(phoneno);
                             //inputPassword.setText(carrier);
                             //inputUsername.setText(good);
-                            preferences.edit().putString("tokenValue", good).apply();
-                            Toast.makeText(getApplication(), "登录成功", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            if (good != "") {
+                                preferences.edit().putString("tokenValue", good).apply();
+                                preferences.edit().putString("username", inputUsername.getText().toString()).apply();
+                                Toast.makeText(getApplication(), "登录成功", Toast.LENGTH_LONG).show();
+                                //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                Intent intent = new Intent();
+                                intent.setClass(LoginActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(getApplication(), "用户名或密码错误", Toast.LENGTH_LONG).show();
+                            }
                         }
                     });
                     //}
@@ -135,11 +166,5 @@ public class LoginActivity extends AppCompatActivity
         SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         String name1 = preferences.getString("name", "defaultname");
         String age1 = preferences.getString("age", "0");*/
-    }
-
-    public void clearToken()
-    {
-        this.preferences.edit().remove("tokenValue").apply();
-        Toast.makeText(getApplication(), "退出成功", Toast.LENGTH_LONG).show();
     }
 }
