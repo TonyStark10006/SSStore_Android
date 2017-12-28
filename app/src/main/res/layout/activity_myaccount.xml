@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/usernamegroup"
         android:layout_below="@id/my_toolbar"
-        android:paddingLeft="20dp">
+        android:paddingLeft="40dp">
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -56,6 +56,7 @@
         android:layout_height="40dp"
         android:text="退出当前账户"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
         android:layout_below="@id/usernamegroup"
         />
 </RelativeLayout>

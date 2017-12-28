@@ -41,7 +41,6 @@ public class MyAccountActivity extends AppCompatActivity {
     {
         this.preferences.edit().remove("tokenValue").apply();
         Toast.makeText(getApplication(), "退出成功", Toast.LENGTH_LONG).show();
-        //finish();
         Intent intent = new Intent();
         intent.setClass(MyAccountActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

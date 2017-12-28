@@ -12,7 +12,10 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
+
     Toolbar toolbar;
+    private long exitTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });*/
                 break;
+            case R.id.menu_setting:
+                startActivity(new Intent(MainActivity.this, LoginActivity2.class));
+                break;
             case R.id.menu_exit:
                 finish();
                 break;
@@ -89,13 +95,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //处理在主界面双击返回键退出程序
+    @Override
+    public void onBackPressed()
+    {
+        if (System.currentTimeMillis() - exitTime > 2000) {
+            Toast.makeText(getApplicationContext(), "再按一次返回键退出程序",
+                    Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            //super.onBackPressed();
+            finish();
+        }
+    }
+
 
     //定义一个内部类,实现View.OnClickListener接口,并重写onClick()方法
-    class BtnClickListener implements View.OnClickListener
+    /*class BtnClickListener implements View.OnClickListener
     {
         @Override
         public void onClick(View v) {
             Toast.makeText(getApplicationContext(), "按钮被点击了", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 }

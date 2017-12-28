@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -74,12 +77,12 @@ public class LoginActivity extends AppCompatActivity
     public void getMsg(View view) throws Exception
     {
         OkHttpClient client = new OkHttpClient.Builder().readTimeout(5, TimeUnit.SECONDS).build();
-        //www.mofada.cn/Utils/guishudi.php?query=13560342474
         //post请求来获得数据
         //创建一个RequestBody，存放重要数据的键值对
         RequestBody body = new FormBody.Builder()
                 .add("username", this.inputUsername.getText().toString())
                 .add("password", this.inputPassword.getText().toString())
+                .add("origin", "xixi")
                 .build();
         //创建一个请求对象，传入URL地址和相关数据的键值对的对象
         Request request = new Request.Builder().url(url).post(body).build();
@@ -116,18 +119,20 @@ public class LoginActivity extends AppCompatActivity
                             //inputUsername.setText(phoneno);
                             //inputPassword.setText(carrier);
                             //inputUsername.setText(good);
-                            if (good != "") {
-                                preferences.edit().putString("tokenValue", good).apply();
-                                preferences.edit().putString("username", inputUsername.getText().toString()).apply();
-                                Toast.makeText(getApplication(), "登录成功", Toast.LENGTH_LONG).show();
-                                //startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                Intent intent = new Intent();
-                                intent.setClass(LoginActivity.this, MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Toast.makeText(getApplication(), "用户名或密码错误", Toast.LENGTH_LONG).show();
+                        JSONObject jsonObject = JSON.parseObject(good);
+                        if (jsonObject.getString("msg").equals("success")) {
+                            preferences.edit().putString("tokenValue", jsonObject.getString("token")).apply();
+                            preferences.edit().putString("username", inputUsername.getText().toString()).apply();
+                            Toast.makeText(getApplication(), "登录成功", Toast.LENGTH_LONG).show();
+                            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            Intent intent = new Intent();
+                            intent.setClass(LoginActivity.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+
+                        } else {
+                                Toast.makeText(getApplication(), jsonObject.getString("tips"), Toast.LENGTH_LONG).show();
                             }
                         }
                     });
