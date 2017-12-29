@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity
     public void getMsg(View view) throws Exception
     {
         OkHttpClient client = new OkHttpClient.Builder().readTimeout(5, TimeUnit.SECONDS).build();
+        String url = "http://haha.com";
         //post请求来获得数据
         //创建一个RequestBody，存放重要数据的键值对
         RequestBody body = new FormBody.Builder()

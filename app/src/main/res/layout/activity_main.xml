@@ -33,12 +33,19 @@
         android:layout_below="@id/my_toolbar"
         android:gravity="center">
 
-        <TextView
+        <!--<TextView
             android:id="@+id/intro"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="这是主介绍界面"
-            android:textSize="40dp"/>
+            android:textSize="40dp"/>-->
+
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_below="@id/intro"
+            />
 
     <!--<EditText
         android:id="@+id/username"
