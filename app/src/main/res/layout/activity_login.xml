@@ -62,7 +62,6 @@
             android:text="登录"
             android:layout_marginTop="10dp"
             android:layout_below="@id/password"
-            android:onClick="getMsg"
             />
 
         <!--<Button-->

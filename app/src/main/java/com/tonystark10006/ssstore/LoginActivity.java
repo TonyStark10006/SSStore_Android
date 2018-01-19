@@ -72,12 +72,23 @@ public class LoginActivity extends AppCompatActivity
         //} else {
         //    this.toobarTitle.setText("我的账户");
         //}
+        this.login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    getMsg();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
-    public void getMsg(View view) throws Exception
+    public void getMsg() throws Exception
     {
+        Config config1 = new Config();
         OkHttpClient client = new OkHttpClient.Builder().readTimeout(5, TimeUnit.SECONDS).build();
-        String url = "http://haha.com";
+        String url = config1.GET_TOKEN_URL;
         //post请求来获得数据
         //创建一个RequestBody，存放重要数据的键值对
         RequestBody body = new FormBody.Builder()

@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 });*/
                 break;
             case R.id.menu_setting:
-                startActivity(new Intent(MainActivity.this, LoginActivity2.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.menu_exit:
                 finish();
