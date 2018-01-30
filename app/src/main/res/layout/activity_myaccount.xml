@@ -52,7 +52,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/content"
+        android:id="@+id/nodeListContent"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_below="@id/usernamegroup"
@@ -65,6 +65,6 @@
         android:text="退出当前账户"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="40dp"
-        android:layout_below="@id/content"
+        android:layout_below="@id/nodeListContent"
         />
 </RelativeLayout>

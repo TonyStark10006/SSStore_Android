@@ -5,9 +5,10 @@
     android:orientation="horizontal">
 
     <ListView
-        android:id="@+id/node_list_item"
+        android:id="@+id/node_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
 
 </LinearLayout>
+

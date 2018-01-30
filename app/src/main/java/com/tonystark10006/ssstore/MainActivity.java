@@ -87,8 +87,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_exit:
                 finish();
                 break;
-            case Menu.FIRST + 3:
-                Toast.makeText(this.getApplication(), "嘎嘎", Toast.LENGTH_LONG).show();
+            case R.id.menu_connect:
+                startActivity(new Intent(MainActivity.this, ConnectorActivity.class));
+                //Toast.makeText(this.getApplication(), "嘎嘎", Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);

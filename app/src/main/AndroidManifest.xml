@@ -41,6 +41,10 @@
             android:name=".LoginActivity2"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".ConnectorActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

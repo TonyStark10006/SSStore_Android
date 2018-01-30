@@ -1,4 +1,4 @@
-package com.tonystark10006.ssstore.models;
+package com.tonystark10006.ssstore.utils;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,22 +7,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.tonystark10006.ssstore.models.Data;
 import com.tonystark10006.ssstore.R;
 
 import java.util.List;
 
-public class NodeListAdapter extends BaseAdapter{
-    private List<Data> nodeList;
-    private Context context;
 
-    public NodeListAdapter(List<Data> nodeList, Context context) {
-        this.nodeList = nodeList;
-        this.context = context;
+public class FragmentAdapter extends BaseAdapter {
+    private List<Data> mData;
+    private Context mContext;
+
+    public FragmentAdapter(List<Data> mData, Context mContext) {
+        this.mData = mData;
+        this.mContext = mContext;
     }
 
     @Override
     public int getCount() {
-        return nodeList.size();
+        return mData.size();
     }
 
     @Override
@@ -38,22 +40,19 @@ public class NodeListAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.node_list_item, parent, false);
+        if(convertView == null){
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.node_list_item_title, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.txtItemTitle = (TextView) convertView.findViewById(R.layout.node_list_item);
+            viewHolder.nodeListItemTitle = (TextView) convertView.findViewById(R.id.node_list_item_title);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.txtItemTitle.setText(nodeList.get(position).getNewTitle());
+        viewHolder.nodeListItemTitle.setText(mData.get(position).getNewTitle());
         return convertView;
     }
 
-    private class ViewHolder {
-        TextView txtItemTitle;
+    private class ViewHolder{
+        TextView nodeListItemTitle;
     }
-
-
-
 }
