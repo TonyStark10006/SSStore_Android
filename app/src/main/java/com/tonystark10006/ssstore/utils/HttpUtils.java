@@ -23,6 +23,11 @@ public class HttpUtils {
 
     Handler handler = new Handler(Looper.getMainLooper());
 
+    public HttpUtils(String Url)
+    {
+        this.url = Url;
+    }
+
     public void run(View view) throws Exception
     {
         OkHttpClient client = new OkHttpClient.Builder().readTimeout(5, TimeUnit.SECONDS).build();
