@@ -26,10 +26,21 @@
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
     </android.support.v7.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="节点信息加载中，请稍等"
+        android:textAlignment="center"
+        android:layout_below="@id/node_list_toolbar"
+        android:textSize="20dp"
+        />
+
     <FrameLayout
         android:id="@+id/nodeListContent"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_below="@id/node_list_toolbar"
+        android:layout_below="@id/loading"
         />
 </RelativeLayout>

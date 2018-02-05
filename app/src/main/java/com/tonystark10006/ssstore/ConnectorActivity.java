@@ -10,6 +10,7 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ import okhttp3.Response;
 public class ConnectorActivity extends AppCompatActivity {
     Toolbar toolbar;
     TextView toobarTitle;
+    TextView connector;
     Context context;
     FrameLayout nodeListZone;
     FragmentManager fragmentManager = null;
@@ -135,9 +137,11 @@ public class ConnectorActivity extends AppCompatActivity {
                                 fragmentManager = getFragmentManager();
                                 nodeListZone = (FrameLayout) findViewById(R.id.nodeListContent);
                                 itemMsg = new ArrayList<Data>();
+                                connector = (TextView) findViewById(R.id.loading);
+                                connector.setVisibility(View.GONE);
                                 String enable;
                                 String expireTime;
-                                SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd-HH-mm:ss");
+                                SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                 for (int i = 0; i < nodeListMsgJson.size(); i++) {
                                     JSONObject nodeMsg = JSON.parseObject(nodeListMsgJson.getString(i));
 
